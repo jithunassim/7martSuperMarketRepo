@@ -1,5 +1,6 @@
 package com.sevenmartsupermarket.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.sevenmartsupermarket.base.Base;
@@ -7,7 +8,6 @@ import com.sevenmartsupermarket.pages.LoginPage;
 import com.sevenmartsupermarket.pages.ManageDeliveryBoyPage;
 import com.sevenmartsupermarket.utilities.DataProviderUtility;
 
-//import testNgExamples.Dataprovider_assign_1_2;
 
 public class ManageDeliveryBoyTest extends Base 
 {
@@ -19,7 +19,9 @@ public class ManageDeliveryBoyTest extends Base
 	loginpage=new LoginPage(driver);
 	managedeliveryboypage=new ManageDeliveryBoyPage(driver);
 	loginpage.login();
-	managedeliveryboypage.clickOnManaage_DeliveryBoy();
+	boolean isEnabled=managedeliveryboypage.clickOnManaage_DeliveryBoy();
+	Assert.assertTrue(isEnabled);
+	System.out.println("TestCase Passed");
 	}
 @Test
 public void verifyAddNew_deliveryBoy()
@@ -29,20 +31,11 @@ managedeliveryboypage=new ManageDeliveryBoyPage(driver);
 loginpage.login();
 managedeliveryboypage.clickOnManaage_DeliveryBoy();
 managedeliveryboypage.check_AddNewDeliveryBoy();
-//managedeliveryboypage.checkEnter_Data();
-//managedeliveryboypage.checkSave_DeliveryBoy();
+managedeliveryboypage.checkSave_DeliveryBoy();
+boolean actualResult=managedeliveryboypage.checkPushNotificationMeessage("Delivery Boy Details Created Successfully");
+Assert.assertTrue(actualResult);
 }
-@Test
-public void Verify_To_SaveDeliveryBoy()
-{
-	
-	loginpage=new LoginPage(driver);
-	managedeliveryboypage=new ManageDeliveryBoyPage(driver);
-	loginpage.login();
-	managedeliveryboypage.clickOnManaage_DeliveryBoy();
-	managedeliveryboypage.check_AddNewDeliveryBoy();
-	managedeliveryboypage.checkSave_DeliveryBoy();
-	}
+
 @Test
 public void verifySearch_ByName()
 {
@@ -51,7 +44,9 @@ public void verifySearch_ByName()
 	loginpage.login();
 	managedeliveryboypage.clickOnManaage_DeliveryBoy();
 	managedeliveryboypage.clickonSearchDeliveryBoy();
-	managedeliveryboypage.enterSearchName("Jithu");
+	String actualResult=managedeliveryboypage.enterSearchName("Jithu");
+	String expectedResult="jithu";
+	Assert.assertEquals(actualResult, expectedResult);
 }
 @Test
 public void verifySearch_ByEmail()
@@ -69,7 +64,8 @@ public void verify_Delete_Delivery_Boy()
 	loginpage=new LoginPage(driver);
 	loginpage.login();
 	managedeliveryboypage.clickOnManaage_DeliveryBoy();
-	managedeliveryboypage.delete_Delivery_Boy("keerthi");
+	managedeliveryboypage.delete_Delivery_Boy("jithu");
+	
 }
 @Test
 public void verifyToEdit_deliveryBoy()

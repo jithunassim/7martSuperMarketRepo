@@ -15,7 +15,7 @@ import com.sevenmartsupermarket.utilities.GeneralUtility;
 public class LoginPage {
 	WebDriver driver;
 	GeneralUtility generalutility;
-	Properties properties=new Properties();//properties is a java class to use to read properties file
+	Properties properties=new Properties();
 	FileInputStream ip;
 	
 	@FindBy(xpath = "(//input[@class='form-control'])[1]")
@@ -36,7 +36,7 @@ public class LoginPage {
 			ip=new FileInputStream(Constants.CONFIG_FILE_PATH);
 			
 			
-			properties.load(ip);//read cheyan load cheythu kodukkum
+			properties.load(ip);
 		} catch (Exception e)
 		{
 			e.printStackTrace();

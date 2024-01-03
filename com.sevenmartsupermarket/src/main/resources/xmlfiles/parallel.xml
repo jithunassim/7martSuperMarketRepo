@@ -1,4 +1,8 @@
 <suite name="ParallelExecution" thread-count="5" parallel="tests">
+	<listeners>
+		<listener
+			class-name="com.sevenmartsupermarket.listerners.ExtentReporter"></listener>
+	</listeners>
 	<test name="SmokeRun">
 		<classes>
 			<class name="com.sevenmartsupermarket.tests.LoginTest"></class>
@@ -7,7 +11,7 @@
 
 		</classes>
 	</test>
-<test name="Smokettest2">
+	<test name="Smokettest2">
 		<classes>
 			<class name="com.sevenmartsupermarket.tests.ManageContentTest"></class>
 			<class name="com.sevenmartsupermarket.tests.ManageLocationTest"></class>

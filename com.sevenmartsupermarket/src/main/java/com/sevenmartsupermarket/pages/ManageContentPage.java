@@ -18,6 +18,7 @@ import com.sevenmartsupermarket.utilities.GeneralUtility;
 public class ManageContentPage
 {
 WebDriver driver;
+GeneralUtility generalutility;
 Properties properties=new Properties();
 FileInputStream ip;
 
@@ -32,6 +33,10 @@ WebElement manageNewsElement;
 WebElement NewElement;
 @FindBy(xpath = "//textarea[@id='news']")
 WebElement enterNews;
+@FindBy(xpath = "//button[@type='submit']")
+WebElement saveElement;
+@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible'] ")
+WebElement alertElement;
 
 public ManageContentPage(WebDriver driver)
 {
@@ -49,7 +54,7 @@ try
 }
 }
 
-public void checkListOutDropDown()
+public List<String> checkListOutDropDown()
 {
 	manageContentClick.click();
 	List<String> names=new ArrayList<String>();
@@ -57,6 +62,7 @@ public void checkListOutDropDown()
 	generalutility=new GeneralUtility(driver);
 	names=generalutility.gettextOfElements(manageContentdropDown);
 	System.out.println(names);
+	return names;
 	
 }
 
@@ -66,11 +72,18 @@ public void clickOnManageNews(String newNews)
 	manageNewsElement.click();
 	NewElement.click();
 	enterNews.sendKeys(newNews);
+	saveElement.click();
+	
 	
 }
 public void enterNewNews()
 {
 	String news=properties.getProperty("news");
 	clickOnManageNews(news);
+}
+public boolean checkPushNotificationMeessage(String message)
+{
+ 	generalutility=new GeneralUtility(driver);
+ 	return generalutility.isWordPresent(alertElement, message);
 }
 }

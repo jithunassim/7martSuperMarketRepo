@@ -50,20 +50,21 @@ WebElement searchElement;
 //List<WebElement> tableNameElement;
 @FindBy(xpath="//table[@class='table table-bordered table-hover table-sm']//tr//td[1]")
 List<WebElement> tableNameElement;
-
-
 @FindBy(xpath="//input[@id='un']")
 WebElement namesearchElement;
 @FindBy(xpath="//button[@type='submit']")
 WebElement searchButtonElement;
 @FindBy(xpath="//input[@id='ut']")
 WebElement searchEmailElement;
+@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible'] ")
+WebElement alertElement;
+@FindBy(xpath = "(//table//tbody//tr//td[1])[1] ")
+WebElement searchByNameElement;
 
-
-//form[@id='form']//input[@class='form-control']
-public void clickOnManaage_DeliveryBoy()
+public boolean clickOnManaage_DeliveryBoy()
 {
 	manageDeliveyBoyElement.click();
+	return manageDeliveyBoyElement.isEnabled();
 }
 public void check_AddNewDeliveryBoy()
 {
@@ -93,10 +94,11 @@ public void clickonSearchDeliveryBoy()
 	searchElement.click();
 	
 }
-public void enterSearchName(String searchName)
+public String enterSearchName(String searchName)
 {
 	namesearchElement.sendKeys(searchName);
 	searchButtonElement.click();
+	return searchByNameElement.getText();
 }
 public void checkSearchBy_Email(String searchEmail)
 {
@@ -120,10 +122,11 @@ public void delete_Delivery_Boy(String nameOfDeliveryBoy)
 		  break; 
 		  } 
 	  }
-	  WebElement delete=driver.findElement(By.xpath("//table//tbody//tr["+
-	  index+"]//td[8]//a[@class='btn btn-sm btn btn-danger btncss']"));
+	  WebElement delete=driver.findElement(By.xpath("//table//tbody//tr["+index+"]//td[8]//a[@class='btn btn-sm btn btn-danger btncss']"));
 	  //WebElement delete=driver.findElement(By.xpath("//table[@class='table table-bordered table-hover table-sm']//tr["+index+"]//td[8]"));
 	  delete.click();
+	
+	  
 	  //pageutility.scrollAndClick(delete);
 	  //driver.switchTo().alert().accept();
 	 
@@ -146,5 +149,10 @@ pageutility=new PageUtility(driver);
 	  }
 	WebElement editbutton=driver.findElement(By.xpath("//table//tbody//tr["+index+"]//td[8]//a[1]"));
 	editbutton.click();
+}
+public boolean checkPushNotificationMeessage(String message)
+{
+ 	generalutility=new GeneralUtility(driver);
+ 	return generalutility.isWordPresent(alertElement, message);
 }
 }

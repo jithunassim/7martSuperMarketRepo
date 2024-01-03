@@ -19,9 +19,7 @@ public void verifyExcelData()
 		excelread.setExcelFile("PushNotification", "NotificationCredential");
 		String data=excelread.getCellData(0, 0);
 		System.out.println(data);
-	
-	
-}
+	}
 	@Test
 	public void verifypushNotificationAlertMessage() throws InterruptedException
 	{

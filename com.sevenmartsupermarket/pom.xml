@@ -3,6 +3,10 @@
   <groupId>com.sevenmartsupermarket</groupId>
   <artifactId>com.sevenmartsupermarket</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
   <dependencies>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
@@ -22,10 +26,12 @@
 			<artifactId>webdrivermanager</artifactId>
 			<version>5.6.2</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>com.relevantcodes</groupId>
 			<artifactId>extentreports</artifactId>
 			<version>2.41.2</version>
+			
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
 		<dependency>
@@ -38,5 +44,10 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>5.0.0</version>
 		</dependency>
+		<dependency>
+    <groupId>com.github.javafaker</groupId>
+    <artifactId>javafaker</artifactId>
+    <version>0.12</version>
+</dependency>
 	</dependencies>
 </project>

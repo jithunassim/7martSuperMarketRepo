@@ -12,7 +12,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 
+import com.beust.jcommander.Parameter;
 import com.relevantcodes.extentreports.model.ITest;
 import com.sevenmartsupermarket.constants.Constants;
 import com.sevenmartsupermarket.utilities.ScreenShot;
@@ -68,14 +70,20 @@ ScreenShot screenshot=new ScreenShot();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(UtilityWait.IMPLICIT_WAIT));
 
 	}
-
-	@BeforeMethod
-	public void launch_Browser() {
-		String browser = properties.getProperty("browser");
+@Parameters("browser")
+	@BeforeMethod(enabled=false,alwaysRun = true)
+	public void launch_Browser(String browser) {
+		//String browser = properties.getProperty("browser");
 		String url = properties.getProperty("url");// to read url from config file
 		initialise(browser, url);
 	}
-	@AfterMethod
+@BeforeMethod(enabled=true,alwaysRun = true)
+public void launch_Browser() {
+	String browser = properties.getProperty("browser");
+	String url = properties.getProperty("url");// to read url from config file
+	initialise(browser, url);
+}
+	@AfterMethod(alwaysRun = true)
 	public void terminatesession(ITestResult itestresult)
 	{
 		if(itestresult.getStatus()==ITestResult.FAILURE)
