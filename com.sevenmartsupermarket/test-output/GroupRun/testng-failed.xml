@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite parallel="tests" name="Failed suite [GroupRun]">
+  <listeners>
+    <listener class-name="com.sevenmartsupermarket.listerners.ExtentReporter"/>
+  </listeners>
+  <test thread-count="5" parallel="tests" name="SmokeRunning(failed)">
+    <groups>
+      <run>
+        <include name="smoke"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="com.sevenmartsupermarket.tests.LoginTest">
+        <methods>
+          <include name="verifyLogin"/>
+        </methods>
+      </class> <!-- com.sevenmartsupermarket.tests.LoginTest -->
+      <class name="com.sevenmartsupermarket.tests.ManageContentTest">
+        <methods>
+          <include name="verifyAddNewNews"/>
+          <include name="verifyListOutDropDown"/>
+        </methods>
+      </class> <!-- com.sevenmartsupermarket.tests.ManageContentTest -->
+    </classes>
+  </test> <!-- SmokeRunning(failed) -->
+</suite> <!-- Failed suite [GroupRun] -->

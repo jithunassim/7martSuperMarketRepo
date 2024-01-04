@@ -14,14 +14,14 @@ public class ManageContentTest extends Base
 {
 	ManageContentPage managecontentpage;
 	LoginPage loginpage;
-	@Test(groups="smoke",retryAnalyzer = RetryAnalyzer.class)
+	@Test(groups="smoke")//,retryAnalyzer = RetryAnalyzer.class)
 	public void verifyListOutDropDown()
 	{
 		loginpage=new LoginPage(driver);
 		managecontentpage=new ManageContentPage(driver);
 		loginpage.login();
 		List<String> actualresult=managecontentpage.checkListOutDropDown();
-		String[] expectedResult={"Manage Pages","Manage Footer Text","Manage Contact","Manage News"};
+		String expectedResult="[Manage Pages, Manage Footer Text, Manage Contact, Manage News]";
 		Assert.assertEquals(actualresult, expectedResult);
 	}
 	@Test(groups={"smoke","regression"})

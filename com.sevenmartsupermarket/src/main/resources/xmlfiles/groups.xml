@@ -1,0 +1,22 @@
+<suite name="GroupRun" thread-count="5" parallel="tests">
+	<listeners>
+		<listener
+			class-name="com.sevenmartsupermarket.listerners.ExtentReporter"></listener>
+	</listeners>
+	<test name="SmokeRunning">
+		<groups>
+			<run>
+				<include name="smoke"></include>
+			</run>
+		</groups>
+		<classes>
+			<class name="com.sevenmartsupermarket.tests.LoginTest"></class>
+			<class name="com.sevenmartsupermarket.tests.HomeTest"></class>
+            <class name="com.sevenmartsupermarket.tests.PushNotificationTest"></class>
+            <class name="com.sevenmartsupermarket.tests.ManageLocationTest"></class>
+            <class name="com.sevenmartsupermarket.tests.ManageContentTest"></class>
+
+		</classes>
+		
+	</test>
+	</suite>
