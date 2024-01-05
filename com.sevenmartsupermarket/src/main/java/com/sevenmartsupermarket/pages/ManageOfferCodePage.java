@@ -10,19 +10,17 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.sevenmartsupermarket.constants.Constants;
+import com.sevenmartsupermarket.utilities.GeneralUtility;
 import com.sevenmartsupermarket.utilities.PageUtility;
 
 public class ManageOfferCodePage 
 {
-//private static final String File = null;
 WebDriver driver;
 PageUtility pageutility;
-//Properties properties=new Properties();//properties is a java class to use to read properties file
-//FileInputStream ip;
+GeneralUtility generalutility;
 
-
-
-public ManageOfferCodePage(WebDriver driver) {
+public ManageOfferCodePage(WebDriver driver)
+{
 	this.driver=driver;
 	PageFactory.initElements(driver, this);
 	
@@ -44,14 +42,22 @@ WebElement enterdescriptionElement;
 WebElement chooseFileElement;
 @FindBy(xpath = "//button[@type='submit']")
 WebElement saveElement;
+@FindBy(xpath ="//div[@class='alert alert-success alert-dismissible']")
+WebElement alertElement;
 
-public void clickOnManageOfferCode()
+
+
+public boolean clickOnManageOfferCode()
 {
 	moreInfoElement.click();
-	newElement.click();
+	//newElement.click();
+	return moreInfoElement.isEnabled();
+	
 }
 public void addNewOfferCode(String offerCode,String percentage,String amount,String description)
 {
+	moreInfoElement.click();
+	newElement.click();
 	enterOffercodeElement.sendKeys(offerCode);
 	enterPercentageElement.sendKeys(percentage);
 	enteramountElement.sendKeys(amount);
@@ -65,5 +71,10 @@ public void imageUpload() throws InterruptedException
 	pageutility.scrollAndClick(saveElement);
 	//Thread.sleep(3000);
 	//saveElement.click();
+}
+public boolean checkNotificationMeessage(String message)
+{
+ 	generalutility=new GeneralUtility(driver);
+ 	return generalutility.isWordPresent(alertElement, message);
 }
 }

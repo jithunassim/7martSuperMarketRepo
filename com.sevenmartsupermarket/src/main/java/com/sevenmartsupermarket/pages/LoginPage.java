@@ -26,6 +26,8 @@ public class LoginPage {
 	WebElement signIn;
 	@FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']")
 	WebElement alert;
+	@FindBy(xpath = "//a[@class='d-block']")
+	WebElement profileNameElement;
 
 	public LoginPage(WebDriver driver)
 	{
@@ -68,6 +70,15 @@ public class LoginPage {
 		clickSignIn();
 		
 	}
+
+	/*
+	 * public String multipleLogin(String userName,String password,String
+	 * profileName) { userNameField.sendKeys(userName);
+	 * passWordField.sendKeys(password); signIn.click(); return
+	 * profileNameElement.getText();
+	 * 
+	 * }
+	 */
 	public boolean checkErrorMessage(String expectedErrorMessage) {
 		generalutility = new GeneralUtility(driver);
 		return generalutility.isWordPresent(alert, expectedErrorMessage);
