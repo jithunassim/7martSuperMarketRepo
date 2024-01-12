@@ -9,8 +9,11 @@
     <classes>
       <class name="com.sevenmartsupermarket.tests.LoginTest">
         <methods>
+          <include name="closeBrowser"/>
           <include name="verify_invalidLogin_ErrorMsg"/>
+          <include name="verifyMultipleLogin"/>
           <include name="terminatesession"/>
+          <include name="launch_Browser"/>
           <include name="launch_Browser"/>
           <include name="verifyLogin"/>
           <include name="runScreenShot"/>

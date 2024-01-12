@@ -30,18 +30,23 @@ public ManageOrderPage(WebDriver driver)
 WebElement manageOrderElement;
 @FindBy(xpath = "//table//tbody//tr//td[1]")
 List <WebElement>tableIdElement;
+@FindBy(xpath = "//h1[contains(text(),'List Orders')]")
+WebElement assertHeadingElement;
 //@FindBy(xpath = "(//select[@class='form-control'])[1]")
 //WebElement alertElement;
 //@FindBy(xpath = "(//button[@name='Update_st'])[1]")
 //WebElement updateElement;
 
-public void checkClickOn_ManageOrder()
+public String checkClickOn_ManageOrder()
+{
+	generalutility=new GeneralUtility(driver);
+	manageOrderElement.click();	
+	String heading= generalutility.get_Textof_element(assertHeadingElement);
+	return heading;
+}
+public void checkChangeStatus(String orderId) throws InterruptedException
 {
 	manageOrderElement.click();	
-}
-public void checkChangeStatus(String orderId)
-{
-	//int index=0;
 	List<String> names=new ArrayList<String>();
 	generalutility=new GeneralUtility(driver);
 	pageutility=new PageUtility(driver);
@@ -62,14 +67,13 @@ public void checkChangeStatus(String orderId)
 	getDropDown.click();
 	Select select=new Select(getDropDown);
 	select.selectByIndex(3);
+	Thread.sleep(8000);
 	WebElement updateElement=driver.findElement(By.xpath("(//form//button[@name='Update_st'])["+(index+2)+"]"));
+	//Thread.sleep(8000);
 	updateElement.click();
 	
-	//getDropDown.sendKeys("Paid");
 	
-	//    (//select[@id='status'])[3]
 	
-	//alertElement.sendKeys("Paid");
 	
 }
 

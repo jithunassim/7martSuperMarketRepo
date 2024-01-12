@@ -91,4 +91,8 @@ public void launch_Browser() {
 			screenshot.takeScreenShot(driver,itestresult.getName());
 		}
 	}
+	
+	  @AfterMethod public void closeBrowser() { driver.close(); }
+	 
+	
 }

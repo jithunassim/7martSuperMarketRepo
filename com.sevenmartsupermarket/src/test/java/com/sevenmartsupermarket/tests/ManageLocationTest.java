@@ -3,14 +3,13 @@ package com.sevenmartsupermarket.tests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.sevenmartsupermarket.base.Base;
 import com.sevenmartsupermarket.pages.LoginPage;
 import com.sevenmartsupermarket.pages.ManageLocationPage;
 import com.sevenmartsupermarket.utilities.DataProviderUtility;
-
-//import testNgExamples.Dataprovider_assign_1_2;
 
 public class ManageLocationTest extends Base
 {
@@ -23,7 +22,10 @@ public class ManageLocationTest extends Base
 		loginpage=new LoginPage(driver);
 		managelocationpage=new ManageLocationPage(driver);
 		loginpage.login();
-		managelocationpage.clikOnManageLocation();
+		String atualResult=managelocationpage.clikOnManageLocation();
+		String expectedResult="List Locations";
+		Assert.assertEquals(atualResult, expectedResult);
+		System.out.println("Testcase passed");
 	}
 	@Test(dataProvider="provider",dataProviderClass =DataProviderUtility.class)
 	public void verifyCreate_NewLocation(String a,String b)
@@ -32,6 +34,9 @@ public class ManageLocationTest extends Base
 		managelocationpage=new ManageLocationPage(driver);
 		loginpage.login();
 		managelocationpage.checkCreateNew_Location(a,b);
+		boolean actualResult=managelocationpage.checkAlertMeessage("Location Created Successfully");
+		Assert.assertTrue(actualResult);
+		System.out.println("Testcase passed");
 		
 	}
 }

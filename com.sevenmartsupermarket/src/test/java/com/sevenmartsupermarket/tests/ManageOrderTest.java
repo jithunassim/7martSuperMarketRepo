@@ -1,5 +1,6 @@
 package com.sevenmartsupermarket.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.github.javafaker.Faker;
@@ -16,18 +17,21 @@ public class ManageOrderTest extends Base
 	{
 		loginpage=new LoginPage(driver);
 		manageorderpage=new ManageOrderPage(driver);
-		
 		loginpage.login();
-		manageorderpage.checkClickOn_ManageOrder();
+		String actualResult=manageorderpage.checkClickOn_ManageOrder();
+		String expectedResult="List Orders";
+		System.out.println(actualResult);
+		System.out.println(expectedResult);
+		Assert.assertEquals(actualResult, expectedResult);
 		
 	}
 	@Test
-	public void verify_ChangeStatus()
+	public void verify_ChangeStatus() throws InterruptedException
 	{
 		loginpage=new LoginPage(driver);
 		manageorderpage=new ManageOrderPage(driver);
 		loginpage.login();
 		manageorderpage.checkClickOn_ManageOrder();
-		manageorderpage.checkChangeStatus("177");
+		manageorderpage.checkChangeStatus("708");
 	}
 }
