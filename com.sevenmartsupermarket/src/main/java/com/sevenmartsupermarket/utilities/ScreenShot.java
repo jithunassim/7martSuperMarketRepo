@@ -10,7 +10,7 @@ import org.openqa.selenium.io.FileHandler;
 import com.sevenmartsupermarket.constants.Constants;
 
 public class ScreenShot {
-	TakesScreenshot takescreenshot;// TakesScreenshot is an interphase used to capture screenshot
+	TakesScreenshot takescreenshot;// TakesScreenshot is an interface used to capture screenshot
 
 	public void takeScreenShot(WebDriver driver, String image_name) {
 		try {
